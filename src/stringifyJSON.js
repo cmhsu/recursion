@@ -5,4 +5,18 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
+  var result = '{';
+  if (obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        result += prop;
+        result += ':';
+        result += obj[prop];
+      }
+    }
+  } else {
+    result += '}'
+    return result;
+  }
+
 };
