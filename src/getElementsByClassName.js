@@ -8,16 +8,18 @@
 //You should use document.body, element.childNodes, and element.classList
 
 var getElementsByClassName = function(className) {
-  var answer = [document.body];
-  var childNodes = document.body.childNodes;
-  childNodes = [].slice.call(childNodes);
-  for (var i = 0; i < childNodes.length; i++) {
-    if (childNodes[i].classList != undefined) {
-      if (childNodes[i].classList.contains(className)) {
-        answer.push(childNodes[i]);
+  var result = [document.body];
+  var searchChildNodes = function(node) {
+    var childNodes = node.childNodes;
+    for (var i = 0; i < childNodes.length; i++) {
+      if (childNodes[i].classList !== undefined) {
+        if (childNodes[i].classList.contains(className)) {
+          result.push(childNodes[i]);
+        }
       }
+      searchChildNodes(childNodes[i]);
     }
-
-  }
-  return answer;
+  };
+  searchChildNodes(document.body);
+  return result;
 };

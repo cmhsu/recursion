@@ -16,13 +16,10 @@ describe('getElementsByClassName', function(){
       var $rootElement = $(htmlString);
       $('body').append($rootElement);
 
-      var expectedNodeList = document.getElementsByClassName('targetClassName'); //made lines 19 and 20 appear before line 22;
-      var expectedArray = Array.prototype.slice.apply(expectedNodeList);
-console.log(expectedArray);
       var result = getElementsByClassName('targetClassName');
-console.log(result)
+      var expectedNodeList = document.getElementsByClassName('targetClassName');
+      var expectedArray = Array.prototype.slice.apply(expectedNodeList);
       var equality = _.isEqual(result, expectedArray); // why can't we use `===` here?
-console.log(equality);
       expect(equality).to.equal(true);
 
       $rootElement.remove();
